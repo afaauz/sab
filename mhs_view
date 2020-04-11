@@ -1,0 +1,22 @@
+<?php 
+	require_once('koneksi.php');
+	
+	$sql = "SELECT * FROM mmahasiswa";
+	
+	$r = mysqli_query($con,$sql);
+	
+	$result = array();
+	
+	while($row = mysqli_fetch_array($r)){
+		array_push($result,array(
+			"nrp"=>$row['nrp'],
+			"nama"=>$row['nama'],
+			"jumlah_sks"=>$row['jumlah_sks'],
+			"lastactive"=>$row['lastactive']
+		));
+	}
+	
+	echo json_encode(array('result'=>$result));
+	
+	mysqli_close($con);
+?>
